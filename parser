@@ -28,8 +28,10 @@ def price(base_url, headers):
         div1 = soup.find_all('div', attrs={'id' : "catalog_inner_1736_wrap"})
         for div in div1:
             div2 = div.find('div', attrs={'right_price_result_search_catalog_inner'''}).text
+            div3 = div.find('a').text
 
-        print(div2)
+            print(div3)
+            print(div2)
 
 
 price(base_url, headers)
