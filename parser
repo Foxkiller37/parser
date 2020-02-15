@@ -12,10 +12,24 @@ def med(base_url, headers):
     request = session.get(base_url, headers=headers)
     if request.status_code == 200:
         soup = bs(request.content, 'html.parser')
-        divs = soup.find_all('p', attrs={'block_title'})
+        divs = soup.find_all('id', attrs={'block_title'})
         for div in divs:
-            href = div.find('a')['href']
-            print('https://xn--37-7lcu.xn--p1ai'+ href)
-    else:
-        print(soup)
+            href = div.find('a').text
+            hrefs = div.find('a')['href']
+            hrefs = 'https://xn--37-7lcu.xn--p1ai' + hrefs
+#            print(href, hrefs)
+
 med(base_url, headers)
+def price(base_url, headers):
+    session = requests.Session()
+    request = session.get(base_url, headers=headers)
+    if request.status_code == 200:
+        soup = bs(request.content, 'html.parser')
+        div1 = soup.find_all('div', attrs={'id' : "catalog_inner_1736_wrap"})
+        for div in div1:
+            div2 = div.find('div', attrs={'right_price_result_search_catalog_inner'''}).text
+
+        print(div2)
+
+
+price(base_url, headers)
